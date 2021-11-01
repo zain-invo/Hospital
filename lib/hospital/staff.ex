@@ -207,8 +207,6 @@ defmodule Hospital.Staff do
     Timing.changeset(timing, attrs)
   end
 
-  alias Hospital.Staff.Appointment
-
   @doc """
   Returns the list of appointments.
 
@@ -218,9 +216,6 @@ defmodule Hospital.Staff do
       [%Appointment{}, ...]
 
   """
-  def list_appointments do
-    Repo.all(Appointment)
-  end
 
   @doc """
   Gets a single appointment.
@@ -236,7 +231,6 @@ defmodule Hospital.Staff do
       ** (Ecto.NoResultsError)
 
   """
-  def get_appointment!(id), do: Repo.get!(Appointment, id)
 
   @doc """
   Creates a appointment.
@@ -250,11 +244,6 @@ defmodule Hospital.Staff do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_appointment(attrs \\ %{}) do
-    %Appointment{}
-    |> Appointment.changeset(attrs)
-    |> Repo.insert()
-  end
 
   @doc """
   Updates a appointment.
@@ -268,11 +257,6 @@ defmodule Hospital.Staff do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_appointment(%Appointment{} = appointment, attrs) do
-    appointment
-    |> Appointment.changeset(attrs)
-    |> Repo.update()
-  end
 
   @doc """
   Deletes a appointment.
@@ -286,9 +270,6 @@ defmodule Hospital.Staff do
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_appointment(%Appointment{} = appointment) do
-    Repo.delete(appointment)
-  end
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking appointment changes.
@@ -299,7 +280,4 @@ defmodule Hospital.Staff do
       %Ecto.Changeset{data: %Appointment{}}
 
   """
-  def change_appointment(%Appointment{} = appointment, attrs \\ %{}) do
-    Appointment.changeset(appointment, attrs)
-  end
 end
