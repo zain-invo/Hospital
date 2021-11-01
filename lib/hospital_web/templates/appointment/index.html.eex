@@ -1,0 +1,32 @@
+<h1>Listing Appointments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <th>Day</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for appointment <- @appointments do %>
+    <tr>
+      <td><%= appointment.from %></td>
+      <td><%= appointment.to %></td>
+      <td><%= appointment.date %></td>
+      <td><%= appointment.day %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.appointment_path(@conn, :show, appointment) %></span>
+        <span><%= link "Edit", to: Routes.appointment_path(@conn, :edit, appointment) %></span>
+        <span><%= link "Delete", to: Routes.appointment_path(@conn, :delete, appointment), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Appointment", to: Routes.appointment_path(@conn, :new) %></span>

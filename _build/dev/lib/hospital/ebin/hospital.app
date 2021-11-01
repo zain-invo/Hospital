@@ -19,6 +19,8 @@
                         'Elixir.Hospital.Staff.Appointment',
                         'Elixir.Hospital.Staff.Doctor',
                         'Elixir.Hospital.Staff.Timing','Elixir.HospitalWeb',
+                        'Elixir.HospitalWeb.AppointmentController',
+                        'Elixir.HospitalWeb.AppointmentView',
                         'Elixir.HospitalWeb.AuthController',
                         'Elixir.HospitalWeb.DashboardController',
                         'Elixir.HospitalWeb.DashboardView',

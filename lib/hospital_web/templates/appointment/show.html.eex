@@ -1,0 +1,28 @@
+<h1>Show Appointment</h1>
+
+<ul>
+
+  <li>
+    <strong>From:</strong>
+    <%= @appointment.from %>
+  </li>
+
+  <li>
+    <strong>To:</strong>
+    <%= @appointment.to %>
+  </li>
+
+  <li>
+    <strong>Date:</strong>
+    <%= @appointment.date %>
+  </li>
+
+  <li>
+    <strong>Day:</strong>
+    <%= @appointment.day %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.appointment_path(@conn, :edit, @appointment) %></span>
+<span><%= link "Back", to: Routes.appointment_path(@conn, :index) %></span>
