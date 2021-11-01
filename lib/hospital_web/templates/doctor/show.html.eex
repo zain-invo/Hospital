@@ -1,0 +1,22 @@
+<h1>Doctor Profile</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @doctor.name %>
+  </li>
+
+  <li>
+    <strong>Speciality:</strong>
+    <%= @doctor.speciality %>
+  </li>
+
+  <li>
+    <strong>Active?:</strong>
+    <%= @doctor.active %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.doctor_path(@conn, :edit, @doctor) %></span>

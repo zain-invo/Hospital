@@ -1,0 +1,160 @@
+/* This file is for your main application css. */
+@import "./phoenix.css";
+
+/* Alerts and form errors */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.alert p {
+  margin-bottom: 0;
+}
+.alert:empty {
+  display: none;
+}
+.invalid-feedback {
+  color: #a94442;
+  display: block;
+  margin: -1rem 0 2rem;
+}
+
+.help-block {
+  color: red;
+  text-transform: capitalize;
+  position: absolute;
+  top: 35px;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+.header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background: #555;
+}
+
+.header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
+
+a {
+  color: #aab3bb;
+  text-decoration: none;
+}
+
+body {
+  background: #eee url("https://i.imgur.com/wL1xxL2.jpg") repeat center center;
+  font: 300 16px "Raleway", sans-serif;
+  color: #aab3bb;
+}
+.all_profiles {
+  display: flex;
+  flex-wrap: wrap;
+}
+.profile {
+  width: 278px;
+  background: #fff;
+  position: relative;
+  margin: 50px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  position: absolute;
+  bottom: -62px;
+  left: 50%;
+  margin-left: -62px;
+  border: 4px solid white;
+}
+
+.avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.copyrights {
+  text-align: center;
+  text-transform: capitalize;
+  margin: 50px;
+}
+
+.copyrights a {
+  color: #f67878;
+}
+
+.header {
+  background: #eee url("https://source.unsplash.com/weekly?hospital") no-repeat
+    center center;
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.info {
+  text-align: center;
+}
+
+.info h2 {
+  margin: 15px 0 0;
+  color: #ff2d55;
+  font: bold 26px/1 "Raleway", sans-serif;
+}
+
+.info a {
+  font-weight: bold;
+}
+
+.info p {
+  margin: 10px 0 10px;
+}
+
+.social-icons {
+  margin: 20px 0 25px;
+  text-align: center;
+}
+
+.social-icons a {
+  width: 35px;
+  height: 35px;
+  margin: 0 5px;
+  display: inline-block;
+  background: url("https://i.imgur.com/5vSmTEI.png") no-repeat center;
+}
+
+.social-icons a.dribbble {
+  background-image: url("https://i.imgur.com/eiD14FP.png");
+}
+.social-icons a.twitter {
+  background-image: url("https://i.imgur.com/xHy2YQJ.png");
+}

@@ -1,0 +1,38 @@
+<h1>Doctors</h1>
+
+<div class="all_profiles">
+
+<%= for doctor <- @doctors do %>
+<div class = "profile">
+  <div class="header">
+    <figure class="avatar">
+      <img src="https://source.unsplash.com/weekly?doctor" alt="Avatar"/>
+    </figure>
+  </div>
+  <div class="info">
+    <h2> <%= doctor.name %> </h2>
+    <p><%= doctor.speciality %></p>
+    <p><%= if not doctor.active do
+      "Not Active"
+      else
+      "Active"
+    end  %></p>
+  <div class="switch">
+    <label>
+      Inactive
+      <input type="checkbox">
+      <span class="lever"></span>
+      Active
+    </label>
+  </div>
+  </div>
+  <div class="social-icons">
+    <a class="dribbble" href="https://dribbble.com/rosina"></a>
+    <a class="like" href="#"></a>
+    <a class="twitter" href="https://twitter.com/rosina_"></a>
+  </div>
+</div>
+  <% end %>
+</div>
+
+<span><%= link "New Add New", to: Routes.doctor_path(@conn, :new) %></span>
