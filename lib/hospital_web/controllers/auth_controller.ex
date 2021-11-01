@@ -1,6 +1,6 @@
 defmodule HospitalWeb.AuthController do
   use HospitalWeb, :controller
-  alias Hospital.Accounts.User
+  alias Hospital.Accounts.Admin
   alias Hospital.Repo
   plug Ueberauth
   require Logger
@@ -9,7 +9,7 @@ defmodule HospitalWeb.AuthController do
     user_params = %{token: auth.credentials.token, email: auth.info.email, provider: "github"}
 
     try do
-      changeset = User.changeset(%User{}, user_params)
+      changeset = Admin.changeset(%Admin{}, user_params)
 
       signin(conn, changeset)
     rescue
@@ -43,7 +43,7 @@ defmodule HospitalWeb.AuthController do
   end
 
   defp insert_or_update_user(changeset) do
-    case Repo.get_by(User, email: changeset.changes.email) do
+    case Repo.get_by(Admin, email: changeset.changes.email) do
       nil ->
         Repo.insert(changeset)
 
