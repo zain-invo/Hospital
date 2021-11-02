@@ -257,6 +257,19 @@ defmodule Hospital.Staff do
     |> Repo.insert()
   end
 
+  def is_doc_free(doctor_id, date, from, to) do
+    query =
+      from a in Appointment,
+        join: d in Doctor,
+        on: a.doctor_id == ^doctor_id,
+        where: a.date == ^date
+
+    query2 = from q in query, where: q.from == ^from
+    query3 = from q in query2, where: q.to == ^to
+
+    if is_nil(Repo.one(query3)), do: true, else: false
+  end
+
   @doc """
   Updates a appointment.
 
@@ -273,6 +286,26 @@ defmodule Hospital.Staff do
     appointment
     |> Appointment.changeset(attrs)
     |> Repo.update()
+  end
+
+  def get_doctor_appointment(doctor_id) do
+    query = from a in Appointment, where: a.doctor_id == ^doctor_id
+    Repo.all(query)
+  end
+
+  def get_patient_appointment(patient_id) do
+    query = from a in Appointment, where: a.patient_id == ^patient_id
+    Repo.all(query)
+  end
+
+  def return_doctor_patient(id) do
+    doctor_id = Repo.one(from a in Appointment, where: a.id == ^id, select: a.doctor_id)
+    Repo.one(from d in Doctor, where: d.id == ^doctor_id, select: d.name)
+  end
+
+  def return_patient_name(id) do
+    patient_id = Repo.one(from a in Appointment, where: a.id == ^id, select: a.patient_id)
+    Repo.one(from d in Hospital.Patients.Patient, where: d.id == ^patient_id, select: d.name)
   end
 
   @doc """

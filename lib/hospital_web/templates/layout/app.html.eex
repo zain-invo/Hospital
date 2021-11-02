@@ -23,25 +23,37 @@
 
   </head>
   <body>
+
     <nav class="light-blue">
       <div class="nav-wrapper container">
         <a href="/" class="brand-logo">
           Hospital
         </a>
           <ul class="right">  <%= if @conn.assigns[:user] do %>
+          <li>   <%= link "Dashboard", to: Routes.dashboard_path(@conn, :index) %>  </li>
+          <li>   <%= link "View Appointments", to: Routes.appointment_path(@conn, :index) %>  </li>
+          <li>   <%= link "New Appointments", to: Routes.appointment_path(@conn, :new) %>  </li>
             <li>   <%= link "Logout", to: Routes.auth_path(@conn, :signout) %>
             </li>  <% else %>
+
             <li><span><%= link "Signup", to: Routes.user_path(@conn, :new) %></span></li>
+            <li><span><%= link "Login", to: Routes.session_path(@conn, :index) %></span></li>
             <li>   <%= link "Sign in with Github", to: Routes.auth_path(@conn, :request, "github") %>  </li>
+
             <% end %>
           </ul>
 
       </div>
     </nav>
+
+
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
+
+ <script src="<%= Routes.static_path(@conn, "/js/app.js") %>" ></script>
   </body>
 </html>

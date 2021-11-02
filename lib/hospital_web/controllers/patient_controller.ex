@@ -3,10 +3,12 @@ defmodule HospitalWeb.PatientController do
 
   alias Hospital.Patients
   alias Hospital.Patients.Patient
+  alias Hospital.Staff
   plug Hospital.Plugs.RequireAuth when action in [:index, :edit, :update, :delete]
 
   def index(conn, _params) do
     patients = Patients.list_patients()
+
     render(conn, "index.html", patients: patients)
   end
 
@@ -36,7 +38,8 @@ defmodule HospitalWeb.PatientController do
 
   def show(conn, %{"id" => id}) do
     patient = Patients.get_patient!(id)
-    render(conn, "show.html", patient: patient)
+    appointments = Staff.get_patient_appointment(id)
+    render(conn, "show.html", patient: patient, appointments: appointments)
   end
 
   def edit(conn, %{"id" => id}) do

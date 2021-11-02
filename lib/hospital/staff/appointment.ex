@@ -7,8 +7,9 @@ defmodule Hospital.Staff.Appointment do
     field :day, :string
     field :from, :string
     field :to, :string
-    field :patient_id, :id
-    field :doctor_id, :id
+
+    belongs_to :doctor, Hospital.Staff.Doctor, foreign_key: :doctor_id
+    belongs_to :patient, Hospital.Patients.Patient, foreign_key: :patient_id
 
     timestamps()
   end
@@ -16,7 +17,7 @@ defmodule Hospital.Staff.Appointment do
   @doc false
   def changeset(appointment, attrs) do
     appointment
-    |> cast(attrs, [:from, :to, :date, :day])
-    |> validate_required([:from, :to, :date, :day])
+    |> cast(attrs, [:from, :to, :date, :doctor_id, :patient_id])
+    |> validate_required([:from, :to, :date, :doctor_id, :patient_id])
   end
 end

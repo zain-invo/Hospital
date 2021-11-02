@@ -13,3 +13,22 @@ import "../css/app.css"
 //     import socket from "./socket"
 //
 import "phoenix_html"
+jQuery(document).ready(function(){
+  jQuery('.timepicker').timepicker({
+    twelveHour: false
+  });
+});
+
+$(document).ready(function(){
+  $('.datepicker').datepicker();
+});
+     
+
+$(document).ready(function(){
+  $('select').formSelect();
+});
+
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+});
+    

@@ -19,4 +19,34 @@
 
 </ul>
 
+
+<h3>Your Appointments</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Patient</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for appointment <- @appointments do %>
+    <tr>
+    <td><%= Hospital.Staff.return_patient_name(appointment.id) %></td>
+      <td><%= appointment.from %></td>
+      <td><%= appointment.to %></td>
+      <td><%= appointment.date %></td>
+
+
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+
 <span><%= link "Edit", to: Routes.doctor_path(@conn, :edit, @doctor) %></span>
+<span><%= link "Logout", to: Routes.session_path(@conn, :delete, @doctor) %></span>

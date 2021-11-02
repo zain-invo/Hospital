@@ -48,6 +48,7 @@ defmodule HospitalWeb.SessionController do
     |> redirect(to: Routes.page_path(conn, :index))
   end
 
+  @spec show(Plug.Conn.t(), any) :: Plug.Conn.t()
   def show(conn, _) do
     conn
     |> redirect(to: Routes.page_path(conn, :index))

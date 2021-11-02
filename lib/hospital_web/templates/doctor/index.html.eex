@@ -34,5 +34,3 @@
 </div>
   <% end %>
 </div>
-
-<span><%= link "New Add New", to: Routes.doctor_path(@conn, :new) %></span>

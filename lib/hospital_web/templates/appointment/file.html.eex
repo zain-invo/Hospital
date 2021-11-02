@@ -1,0 +1,67 @@
+ <!DOCTYPE html>
+<html>
+
+
+  <head>
+    <script data-require="jquery@1.12.4" data-semver="1.12.4" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.js"></script>
+  </head>
+
+  <!-- Compiled and minified CSS -->
+  <!-- Compiled and minified JavaScript -->
+  <body>
+
+  <div class="row">
+
+    <form action="<%= Routes.appointment_path(@conn, :create) %>",  class="col s12" method="post">
+
+    <div class="input-field col s12">
+    <select name="appointment[doctor_id]" id = "doctor">
+      <option value="" disabled selected>Choose Doctor</option>
+      <%= for doctor <- @doctors do %>
+      <option value=<%= doctor.id %> ><%= doctor.name %></option>
+      <% end %>
+    </select>
+    <label for="doctor">Select Doctor</label>
+  </div>
+  <input type="hidden" name="_csrf_token" value="<%= HospitalWeb.AppointmentView.csrf_token(@conn) %>">
+<div class="input-field col s12">
+    <select name="appointment[patient_id]" id="patient">
+      <option value="" disabled selected>Choose Patient</option>
+      <%= for patient <- @patients do %>
+      <option value=<%= patient.id %> ><%= patient.name %></option>
+      <% end %>
+    </select>
+    <label for = "patient" >Select Patient</label>
+  </div>
+      <div class="row">
+        <div class="input-field col s12">
+            <input name="appointment[from]" id="From" class="timepicker" placeholder="Start Time" />
+            <label for="From">From</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="appointment[to]" id="to" class="timepicker" placeholder="Start Time" />
+          <label for="to">To</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="appointment[date]" type="text" id = "date" class="datepicker">
+          <label for="date">Date</label>
+        </div>
+      </div>
+
+
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+
+    </form>
+  </div>
+    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>" ></script>
+  </body>
+
+</html>

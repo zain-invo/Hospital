@@ -5,6 +5,8 @@
     </div>
   <% end %>
 
+
+
   <%= label f, :from %>
   <%= text_input f, :from %>
   <%= error_tag f, :from %>
@@ -20,6 +22,7 @@
   <%= label f, :day %>
   <%= text_input f, :day %>
   <%= error_tag f, :day %>
+  </div>
 
   <div>
     <%= submit "Save" %>

@@ -39,8 +39,9 @@ defmodule HospitalWeb.DoctorController do
   def show(conn, _params) do
     id = Plug.Conn.get_session(conn, :current_user)
     doctor = Staff.get_doctor_by_uid!(id)
-    IO.inspect(doctor)
-    render(conn, "show.html", doctor: doctor)
+
+    appointments = Staff.get_doctor_appointment(doctor.id)
+    render(conn, "show.html", doctor: doctor, appointments: appointments)
   end
 
   def edit(conn, %{"id" => id}) do

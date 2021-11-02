@@ -5,6 +5,7 @@ defmodule Hospital.Patients do
 
   import Ecto.Query, warn: false
   alias Hospital.Repo
+  alias Hospital.Staff.Appointment
 
   alias Hospital.Patients.Patient
 
@@ -35,6 +36,20 @@ defmodule Hospital.Patients do
       ** (Ecto.NoResultsError)
 
   """
+
+  def is_patient_free(patient_id, date, from, to) when is_nil(patient_id) == false do
+    query =
+      from a in Appointment,
+        join: d in Patient,
+        on: a.patient_id == ^patient_id,
+        where: a.date == ^date
+
+    query2 = from q in query, where: q.from == ^from
+    query3 = from q in query2, where: q.to == ^to
+
+    if is_nil(Repo.one(query3)), do: true, else: false
+  end
+
   def get_patient!(id), do: Repo.get!(Patient, id)
 
   def get_patient_by_uid!(user_id) do
