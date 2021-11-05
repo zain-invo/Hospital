@@ -24,6 +24,7 @@ defmodule HospitalWeb.Router do
     resources "/patients", PatientController
     resources "/login", SessionController
     resources "/appointments", AppointmentController
+    resources "/prescriptions", PrescriptionController
   end
 
   scope "/auth", HospitalWeb do

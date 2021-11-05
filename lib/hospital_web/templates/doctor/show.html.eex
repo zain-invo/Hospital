@@ -29,6 +29,7 @@
       <th>From</th>
       <th>To</th>
       <th>Date</th>
+      <th>Prescription</th>
 
       <th></th>
     </tr>
@@ -40,6 +41,7 @@
       <td><%= appointment.from %></td>
       <td><%= appointment.to %></td>
       <td><%= appointment.date %></td>
+      <td><span><%= link "Add Prescription", to: Routes.prescription_path(@conn, :new, patient_id: appointment.patient_id) %></span></td>
 
 
     </tr>

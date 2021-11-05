@@ -1,0 +1,30 @@
+<h1>Listing Prescriptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Med name</th>
+      <th>Dose</th>
+      <th>Times in day</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for prescription <- @prescriptions do %>
+    <tr>
+      <td><%= prescription.med_name %></td>
+      <td><%= prescription.dose %></td>
+      <td><%= prescription.times_in_day %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.prescription_path(@conn, :show, prescription) %></span>
+        <span><%= link "Edit", to: Routes.prescription_path(@conn, :edit, prescription) %></span>
+        <span><%= link "Delete", to: Routes.prescription_path(@conn, :delete, prescription), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Prescription", to: Routes.prescription_path(@conn, :new) %></span>

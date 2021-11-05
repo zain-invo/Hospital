@@ -21,6 +21,9 @@ defmodule Hospital.Staff do
     Repo.all(Doctor)
   end
 
+  def get_doctor_name(id) do
+    Repo.one(from d in Doctor, where: d.id == ^id, select: d.name)
+  end
   @doc """
   Gets a single doctor.
 

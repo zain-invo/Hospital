@@ -7,7 +7,7 @@ defmodule Hospital.Accounts.User do
     field :provider, :string, default: "self"
     field :token, :string, default: "no-token"
     field :password, :string
-    field :type, :string, default: "patient"
+    field :type, :string, default: "doctor"
 
     timestamps()
   end

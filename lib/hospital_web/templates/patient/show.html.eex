@@ -42,11 +42,39 @@
   <tbody>
 <%= for appointment <- @appointments do %>
     <tr>
-    <td><%= Hospital.Staff.return_doctor_patient(appointment.id) %></td>
+    <td><%= Hospital.Staff.get_doctor_name(appointment.doctor_id) %></td>
       <td><%= appointment.from %></td>
       <td><%= appointment.to %></td>
       <td><%= appointment.date %></td>
       <td><%= appointment.day %></td>
+
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+
+<h1>My Prescriptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Doctor</th>
+      <th>Med name</th>
+      <th>Dose</th>
+      <th>Times in day</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for prescription <- @prescriptions do %>
+    <tr>
+      <td><%= Hospital.Staff.return_doctor_patient(prescription.doctor_id) %></td>
+      <td><%= prescription.med_name %></td>
+      <td><%= prescription.dose %></td>
+      <td><%= prescription.times_in_day %></td>
+
 
     </tr>
 <% end %>

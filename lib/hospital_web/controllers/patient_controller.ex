@@ -39,7 +39,8 @@ defmodule HospitalWeb.PatientController do
   def show(conn, %{"id" => id}) do
     patient = Patients.get_patient!(id)
     appointments = Staff.get_patient_appointment(id)
-    render(conn, "show.html", patient: patient, appointments: appointments)
+    prescriptions = Hospital.Prescriptions.patient_prescriptions(id)
+    render(conn, "show.html", patient: patient, appointments: appointments, prescriptions: prescriptions)
   end
 
   def edit(conn, %{"id" => id}) do
