@@ -42,11 +42,16 @@ defmodule Hospital.Staff do
 
   def get_doctor_by_uid!(user_id) do
     query =
-      from d in "doctors",
-        where: d.user_id == ^user_id,
-        select: %Doctor{id: d.id, name: d.name, speciality: d.speciality, active: d.active}
+      from d in Doctor,
+        where: d.user_id == ^user_id
 
     Repo.one(query)
+  end
+
+
+
+  def get_doctor_name_by_uid(user_id) do
+  Repo.one(from d in "doctors", where: d.user_id == ^user_id, select: d.name)
   end
 
   @doc """

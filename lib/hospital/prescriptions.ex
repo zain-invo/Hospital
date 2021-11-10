@@ -22,7 +22,13 @@ defmodule Hospital.Prescriptions do
   end
 
   def patient_prescriptions(patient_id) do
-    Repo.all(from p in Prescription, where: p.patient_id==^patient_id)
+
+    if Repo.all(from p in Prescription, where: p.patient_id==^patient_id) do
+      Repo.all(from p in Prescription, where: p.patient_id==^patient_id)
+    else
+      %Prescription{}
+    end
+
   end
 
 
@@ -56,9 +62,11 @@ defmodule Hospital.Prescriptions do
 
   """
   def create_prescription(attrs \\ %{}) do
-    %Prescription{}
-    |> Prescription.changeset(attrs)
+    result = %Prescription{}
+    |>Prescription.changeset(attrs)
     |> Repo.insert()
+
+    IO.inspect(result)
   end
 
   @doc """

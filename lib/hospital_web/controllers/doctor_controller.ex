@@ -11,6 +11,7 @@ defmodule HospitalWeb.DoctorController do
 
   def new(conn, params) do
     changeset = Staff.change_doctor(%Doctor{})
+    IO.inspect(params)
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -75,4 +76,6 @@ defmodule HospitalWeb.DoctorController do
     |> put_flash(:info, "doctor deleted successfully.")
     |> redirect(to: Routes.doctor_path(conn, :index))
   end
+
+
 end

@@ -1,0 +1,66 @@
+ <!DOCTYPE html>
+<html>
+
+
+  <head>
+    <script data-require="jquery@1.12.4" data-semver="1.12.4" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.js"></script>
+  </head>
+
+  <!-- Compiled and minified CSS -->
+  <!-- Compiled and minified JavaScript -->
+  <body>
+
+
+  <div class="row">
+
+    <form action="<%= Routes.prescription_path(@conn, :create) %>",  class="col s12" method="post">
+    <input type="hidden" name="_csrf_token" value="<%= HospitalWeb.PrescriptionView.csrf_token(@conn) %>">
+
+    <div class="row">
+        <div class="input-field col s12">
+          <input disabled  id="disabled" type="text" class="validate" value = <%= @patient.name %>  >
+          <label for="disabled">Patient Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input disabled id="disabled" type="text" class="validate" value =<%= @doctor.name %>>
+          <label for="disabled">Doctor Name</label>
+        </div>
+      </div>
+
+      <input  name = "prescription[doctor_id]" id="text" type="hidden" class="validate" value =<%= @patient.id %>>
+      <input  id="text" name ="prescription[patient_id]" type="hidden" class="validate" value =<%= @patient.id %> >
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Enter Medicine Name" name ="prescription[med_name]" id="med_name" type="text" class="validate">
+          <label for="med_name">Medicine Name</label>
+        </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Dose" name ="prescription[dose]" id="dose" type="text" class="validate">
+          <label for="dose">Dose</label>
+        </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Times in a Day" name ="prescription[times_in_day]" id="times_in_day" type="text" class="validate">
+          <label for="dose">Times in a Day</label>
+        </div>
+
+      <div class="row">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+  </div>
+
+
+    </form>
+  </div>
+    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>" ></script>
+  </body>
+
+</html>

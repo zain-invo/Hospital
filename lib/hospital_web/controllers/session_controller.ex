@@ -53,4 +53,11 @@ defmodule HospitalWeb.SessionController do
     conn
     |> redirect(to: Routes.page_path(conn, :index))
   end
+
+  def current_user_id(conn) do
+    conn
+    |> get_session(:current_user)
+
+
+  end
 end

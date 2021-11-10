@@ -61,6 +61,11 @@ defmodule Hospital.Patients do
     Repo.one(query)
   end
 
+  def get_patient_name(id) do
+    Repo.one(from p in "patients", where: p.id == ^id,
+    select: p.name)
+  end
+
   @doc """
   Creates a patient.
 

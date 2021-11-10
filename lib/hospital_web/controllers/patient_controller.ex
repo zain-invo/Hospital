@@ -74,4 +74,16 @@ defmodule HospitalWeb.PatientController do
     |> put_flash(:info, "Patient deleted successfully.")
     |> redirect(to: Routes.patient_path(conn, :index))
   end
+
+
+  def bill(conn, %{"patient_id"=>patient_id}) do
+
+    id = elem(Integer.parse(patient_id),0)
+    patient = Hospital.Patients.get_patient!(id)
+    prescriptions = Hospital.Prescriptions.patient_prescriptions((id))
+    bills = Hospital.Billing.list_bills_by_patient_id(id)
+
+    render(conn, "bill.html", patient: patient, prescriptions: prescriptions, bills: bills)
+  end
+
 end

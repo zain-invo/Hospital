@@ -25,6 +25,10 @@ defmodule HospitalWeb.Router do
     resources "/login", SessionController
     resources "/appointments", AppointmentController
     resources "/prescriptions", PrescriptionController
+    get "/patients/bill/:patient_id", PatientController, :bill
+    get "/prescription/:patient_id", PrescriptionController, :insert_prescription
+    resources "/bills", BillController
+
   end
 
   scope "/auth", HospitalWeb do

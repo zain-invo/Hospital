@@ -1,0 +1,28 @@
+<h1>Show Bill</h1>
+
+<ul>
+
+  <li>
+    <strong>Med name:</strong>
+    <%= @bill.med_name %>
+  </li>
+
+  <li>
+    <strong>Price per unit:</strong>
+    <%= @bill.price_per_unit %>
+  </li>
+
+  <li>
+    <strong>Quantity:</strong>
+    <%= @bill.quantity %>
+  </li>
+
+  <li>
+    <strong>Date purchased:</strong>
+    <%= @bill.date_purchased %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.bill_path(@conn, :edit, @bill) %></span>
+<span><%= link "Back", to: Routes.bill_path(@conn, :index) %></span>

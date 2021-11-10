@@ -8,6 +8,9 @@ defmodule Hospital.Prescriptions.Prescription do
     field :times_in_day, :string
     belongs_to :patients, Hospital.Patients.Patient, foreign_key: :patient_id
     belongs_to :doctors, Hospital.Staff.Doctor, foreign_key: :doctor_id
+    # field :patient_id, :integer
+    # field :doctor_id, :integer
+
 
     timestamps()
   end
@@ -15,7 +18,9 @@ defmodule Hospital.Prescriptions.Prescription do
   @doc false
   def changeset(prescription, attrs) do
     prescription
-    |> cast(attrs, [:med_name, :dose, :times_in_day])
-    |> validate_required([:med_name, :dose, :times_in_day])
+    |> cast(attrs, [:med_name, :dose, :times_in_day, :patient_id, :doctor_id])
+    |> validate_required([:med_name, :dose, :times_in_day, :patient_id, :doctor_id])
+    |> foreign_key_constraint(:doctor_id)
+    |> foreign_key_constraint(:patient_id)
   end
 end

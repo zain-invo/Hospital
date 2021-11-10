@@ -26,5 +26,3 @@
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Prescription", to: Routes.prescription_path(@conn, :new) %></span>

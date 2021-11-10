@@ -5,6 +5,7 @@
     </div>
   <% end %>
 
+
   <%= label f, :med_name %>
   <%= text_input f, :med_name %>
   <%= error_tag f, :med_name %>

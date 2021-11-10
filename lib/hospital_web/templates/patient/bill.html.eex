@@ -1,0 +1,143 @@
+ <!DOCTYPE html>
+<html>
+
+
+  <head>
+    <script data-require="jquery@1.12.4" data-semver="1.12.4" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.js"></script>
+  </head>
+
+  <!-- Compiled and minified CSS -->
+  <!-- Compiled and minified JavaScript -->
+  <body>
+
+<h1>Patient Details</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @patient.name %>
+  </li>
+
+  <li>
+    <strong>Disease:</strong>
+    <%= @patient.disease %>
+  </li>
+
+  <li>
+    <strong>Gender:</strong>
+    <%= @patient.gender %>
+  </li>
+
+  <li>
+    <strong>Age:</strong>
+    <%= @patient.age %>
+  </li>
+
+</ul>
+
+<h1>Prescriptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Med name</th>
+      <th>Dose</th>
+      <th>Times in day</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for prescription <- @prescriptions do %>
+    <tr>
+      <td><%= prescription.med_name %></td>
+      <td><%= prescription.dose %></td>
+      <td><%= prescription.times_in_day %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.prescription_path(@conn, :show, prescription) %></span>
+        <span><%= link "Edit", to: Routes.prescription_path(@conn, :edit, prescription) %></span>
+        <span><%= link "Delete", to: Routes.prescription_path(@conn, :delete, prescription), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<div class="form-group col s12">
+
+  <div class="row">
+
+    <form action="<%= Routes.bill_path(@conn, :create) %>",  class="col s12" method="post">
+    <input type="hidden" name="_csrf_token" value="<%= HospitalWeb.PrescriptionView.csrf_token(@conn) %>" >
+
+
+
+
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Enter Medicine Name" name ="bill[med_name]" id="med_name" type="text" class="validate">
+          <label for="med_name">Medicine Name</label>
+        </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Dose" name ="bill[price_per_unit]" id="price_per_unit" type="text" class="validate">
+          <label for="price_per_unit">Price Per Unit</label>
+        </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Quantity" name ="bill[quantity]" id="quantity" type="text" class="validate">
+          <label for="quantity">Quantity</label>
+        </div>
+        <input  id="text" name ="bill[patient_id]" type="hidden" class="validate" value =<%= @patient.id %>>
+      <input  id="text" name ="bill[date_purchased]" type="hidden" class="validate" value =<%= Timex.today() %>>
+
+      <div class="row">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+  </div>
+</div>
+
+<div class="row">
+<div class="col s12">
+  <h1>Listing Bills</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Med name</th>
+      <th>Price per unit</th>
+      <th>Quantity</th>
+      <th>Date purchased</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for bill <- @bills do %>
+    <tr>
+      <td><%= bill.med_name %></td>
+      <td><%= bill.price_per_unit %></td>
+      <td><%= bill.quantity %></td>
+      <td><%= bill.date_purchased %></td>
+
+    </tr>
+<% end %>
+  </tbody>
+</table>
+</div>
+</div>
+
+
+    </form>
+  </div>
+    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>" ></script>
+  </body>
+
+</html>
