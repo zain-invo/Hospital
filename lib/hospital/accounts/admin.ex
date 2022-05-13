@@ -16,4 +16,5 @@ defmodule Hospital.Accounts.Admin do
     |> cast(attrs, [:email, :provider, :token])
     |> validate_required([:email, :provider, :token])
   end
+  #sample comment
 end
